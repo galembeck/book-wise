@@ -1,3 +1,5 @@
+import { BookCoverVariant } from "@/types/types";
+
 export const navigationLinks = [
   {
     href: "/library",
@@ -53,6 +55,14 @@ export const FIELD_TYPES = {
   email: "email",
   universityId: "number",
   password: "password",
+};
+
+export const VARIANT_STYLES: Record<BookCoverVariant, string> = {
+  extraSmall: "book-cover_extra-small",
+  small: "book-cover_small",
+  medium: "book-cover_medium",
+  regular: "book-cover_regular",
+  wide: "book-cover_wide",
 };
 
 export const sampleBooks = [
