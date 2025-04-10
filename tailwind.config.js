@@ -4,7 +4,7 @@
 module.exports = {
 	darkMode: ["class"],
 	content: [
-		"./src/**/*.{js,ts,jsx,tsx,mdx}",
+		'./src/**/*.{html,js,jsx,ts,tsx,css}',
 	],
 	theme: {
 		extend: {
@@ -106,7 +106,7 @@ module.exports = {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			backgroundImage: {
-				pattern: "url('/assets/pattern.webp')",
+				pattern: "url('/images/pattern.webp')",
 			},
 		},
 	},
