@@ -27,3 +27,9 @@ export interface BookCoverProps {
   coverColor: string;
   coverUrl: string;
 }
+
+export interface BookListProps {
+  title: string;
+  books: BookProps[];
+  containerClassName?: string;
+}
