@@ -1,3 +1,6 @@
+import { ZodType } from "zod";
+import { FieldValues } from "react-hook-form";
+
 export interface BookProps {
   id: number;
   title: string;
@@ -32,4 +35,11 @@ export interface BookListProps {
   title: string;
   books: BookProps[];
   containerClassName?: string;
+}
+
+export interface AuthFormProps<T extends FieldValues> {
+  schema: ZodType<T>;
+  defaultValues: T;
+  onSubmit: (data: T) => Promise<{ success: boolean; error?: string }>;
+  type: "SIGN_IN" | "SIGN_UP";
 }
