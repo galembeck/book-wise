@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 
 import { bookWiseConfig } from "@/config";
 
+import { Toaster } from "@/components/ui/toaster";
+
 import "../styles/globals.css";
 
 const ibmPlexSans = localFont({
@@ -32,6 +34,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         className={`${ibmPlexSans.className} ${bebasNeue.variable}`}
       >
         {children}
+
+        <Toaster />
       </body>
     </html>
   );
