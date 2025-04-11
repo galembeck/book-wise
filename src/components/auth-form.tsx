@@ -61,10 +61,10 @@ export function AuthForm<T extends FieldValues>({
       router.push("/");
     } else {
       toast({
-        title: `An error occurred while ${
+        title: "Invalid credentials",
+        description: `An error occurred while ${
           isSignIn ? "signing in" : "creating an account"
-        }`,
-        description: result.error ?? "An error occurred",
+        }.`,
         variant: "destructive",
       });
     }
