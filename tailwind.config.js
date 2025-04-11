@@ -56,6 +56,7 @@ module.exports = {
 				primary: {
 					DEFAULT: "#E7C9A5",
 					admin: "#25388C",
+					avatar: "#ACDDEE"
 				},
 				green: {
 					DEFAULT: "#027A48",
