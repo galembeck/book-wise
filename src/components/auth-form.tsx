@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -25,10 +24,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { toast } from "@/hooks/use-toast";
+
+import { ImageUpload } from "./image-upload";
+
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 
 import { AuthFormProps } from "@/types/types";
-import { ImageUpload } from "./image-upload";
 
 export function AuthForm<T extends FieldValues>({
   type,
@@ -36,6 +38,8 @@ export function AuthForm<T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: AuthFormProps<T>) {
+  const router = useRouter();
+
   const isSignIn = type === "SIGN_IN";
 
   const form: UseFormReturn<T> = useForm({
@@ -43,7 +47,28 @@ export function AuthForm<T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit: SubmitHandler<T> = async (data) => {};
+  const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn
+          ? "Successfully signed in!"
+          : "Account created successfully!",
+      });
+
+      router.push("/");
+    } else {
+      toast({
+        title: `An error occurred while ${
+          isSignIn ? "signing in" : "creating an account"
+        }`,
+        description: result.error ?? "An error occurred",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">

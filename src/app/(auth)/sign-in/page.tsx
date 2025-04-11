@@ -3,6 +3,7 @@
 import { AuthForm } from "@/components/auth-form";
 
 import { signInShcema } from "@/lib/validations";
+import { signInWithCredentials } from "@/lib/actions/auth";
 
 export default function SignIn() {
   return (
@@ -13,7 +14,7 @@ export default function SignIn() {
         email: "",
         password: "",
       }}
-      onSubmit={() => {}}
+      onSubmit={signInWithCredentials}
     />
   );
 }

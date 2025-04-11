@@ -1,6 +1,9 @@
 import { ReactNode } from "react";
 
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
+
+import { auth } from "@/auth";
 
 import { bookWiseConfig } from "@/config";
 
@@ -26,17 +29,25 @@ const bebasNeue = localFont({
 
 export const metadata = bookWiseConfig;
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        suppressHydrationWarning
-        className={`${ibmPlexSans.className} ${bebasNeue.variable}`}
-      >
-        {children}
+      <SessionProvider session={session}>
+        <body
+          suppressHydrationWarning
+          className={`${ibmPlexSans.className} ${bebasNeue.variable}`}
+        >
+          {children}
 
-        <Toaster />
-      </body>
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
 }

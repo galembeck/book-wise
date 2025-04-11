@@ -3,6 +3,7 @@
 import { AuthForm } from "@/components/auth-form";
 
 import { signUpSchema } from "@/lib/validations";
+import { signUp } from "@/lib/actions/auth";
 
 export default function SignUp() {
   return (
@@ -16,7 +17,7 @@ export default function SignUp() {
         universityCard: "",
         password: "",
       }}
-      onSubmit={() => {}}
+      onSubmit={signUp}
     />
   );
 }
